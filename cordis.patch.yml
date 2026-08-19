@@ -1,0 +1,9 @@
+# dsh-gov-portal bundle patch layer：向 profile 插入本插件行。
+# loader 将 import 包 main（lib/index.js 的默认导出插件），
+# 在宿主进程内拉起 3081 政务平台并桥接 ctx.apiProxy。
+# inject: [apiProxy] 声明对宿主 API 网关的依赖 —— Cordis 会等
+# apiProxy 激活后再挂载本插件，保证桥接服务可用。
+- insert:
+    - id: gov-portal
+      name: 'dsh-gov-portal'
+      inject: [apiProxy]
