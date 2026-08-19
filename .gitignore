@@ -1,0 +1,19 @@
+# Local archival and reference materials
+Backup/
+Example/
+
+# Generated test artifacts
+shots/*.png
+
+# Dependencies and local environment files
+node_modules/
+.env
+.env.*
+!.env.example
+
+# Editor and operating-system files
+.vscode/
+.idea/
+*.log
+.DS_Store
+Thumbs.db
