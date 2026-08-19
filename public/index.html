@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deepseek Harness 综合智能办事平台</title>
+<link rel="stylesheet" href="/css/gov.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23c00101'/%3E%3Ccircle cx='32' cy='32' r='24' fill='none' stroke='%23fff' stroke-width='2'/%3E%3Ctext x='32' y='42' font-size='28' text-anchor='middle' fill='%23fff' font-family='SimHei'%3E办%3C/text%3E%3C/svg%3E">
+</head>
+<body data-theme="classic-blue">
+<div class="page-loading" id="pageLoading" aria-hidden="true"><span>页面加载中……</span></div>
+<div class="main" id="app">
+
+  <!-- ============ 顶部工具条（XP 点阵字体） ============ -->
+  <div class="topbar">
+    <div class="page-wrap">
+      <div class="topbar-left">
+        <a id="btnSetHome" title="把本平台设为浏览器首页">设为首页</a>
+        <a id="btnFavorite" title="把本平台加入浏览器收藏夹">加入收藏</a>
+        <a id="btnAria" title="开启/关闭大字无障碍浏览模式">无障碍浏览</a>
+      </div>
+      <div class="topbar-slogan" id="topbarSlogan">欢迎访问Deepseek Harness平台！</div>
+      <div class="topbar-right"><span class="topbar-visits">本站已被访问：<b id="visitCount">000000</b> 次　|　</span><span class="topbar-clock" id="topbarClock">今天是 ----年--月--日 星期- --:--:--</span></div>
+    </div>
+  </div>
+
+  <!-- ============ 主 Header ============ -->
+  <div class="header">
+    <div class="page-wrap">
+      <div class="header-logo">
+        <div class="seal none" id="headerSeal" title="平台徽标"></div>
+        <div class="header-titles">
+          <div class="header-title" id="headerTitle">Deepseek Harness 综合智能办事平台</div>
+          <div class="header-subtitle" id="headerSubtitle">至公至正 · 智能协同 · 自主运转</div>
+        </div>
+      </div>
+      <div class="header-searchbox">
+        <div class="search-form">
+          <input type="text" id="globalSearchInput" placeholder="请输入关键字，回车查询…">
+          <button class="search-btn" id="globalSearchBtn">查 询</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 主导航 ============ -->
+  <div class="navbar">
+    <ul class="page-wrap" id="mainNav">
+      <li><a data-tab="home" class="active">平台首页</a></li>
+      <li><a data-tab="hall">业务大厅</a></li>
+      <li><a data-tab="volume">电子卷宗</a></li>
+      <li><a data-tab="trail">督办流水</a></li>
+      <li><a data-tab="config">参数配置</a></li>
+      <li><a data-tab="policy">政策法规</a></li>
+    </ul>
+  </div>
+
+  <!-- ============ 跑马灯（XP 点阵字体，重要通知独占整行） ============ -->
+  <div class="marquee-bar page-wrap">
+    <div class="marquee-notice">
+      <span class="tag">重要通知</span>
+      <div class="mq-view"><div class="mq-track" id="mqNoticeTrack"></div></div>
+    </div>
+  </div>
+
+  <!-- ============ 主内容区（80/20） ============ -->
+  <div class="main-body page-wrap">
+
+    <!-- ========= 左：核心直办大厅 ========= -->
+    <div class="col-main" id="colMain">
+
+      <!-- 平台首页（参照中国政府网/九江网首页版式） -->
+      <section class="tab-page" id="page-home">
+        <!-- 头条区 -->
+        <div class="gov-panel home-toutiao">
+          <div class="gov-panel-body">
+            <h2 id="homeHeadline">Deepseek Harness 综合智能办事平台正式上线运行</h2>
+            <div class="memo" id="homeMemo">平台面向全部受理窗口开放独立政务办事大厅，全面接入模型推理、沙箱权限、会话卷宗与督办流水等智能化办事能力，实现“至公至正 · 智能协同 · 自主运转“的服务目标。</div>
+            <div class="detail"><a id="homeHeadlineMore">更多 &gt;&gt;</a></div>
+          </div>
+        </div>
+        <!-- 政务专题栏 -->
+        <div class="home-banner">
+          <div class="hb-kicker">政务专题</div>
+          <div class="hb-title" id="bannerTitle">Deepseek Harness 综合智能办事平台</div>
+          <div class="hb-sub" id="bannerSub">至公至正 · 智能协同 · 自主运转</div>
+          <a class="hb-more" id="bannerMore">进入业务大厅 &gt;&gt;</a>
+        </div>
+        <!-- 三栏 -->
+        <div class="home-cols">
+          <div class="hc gov-panel">
+            <div class="gov-panel-title red">通知公告</div>
+            <ul class="hc-list" id="homeNoticeList"></ul>
+          </div>
+          <div class="hc gov-panel">
+            <div class="gov-panel-title">办事指南</div>
+            <ul class="hc-list" id="homeGuideList"></ul>
+          </div>
+          <div class="hc gov-panel">
+            <div class="gov-panel-title gray">平台运行数据</div>
+            <div class="hc-data gov-panel-body" id="homeDataBox">
+              <table class="gov-table">
+                <tbody>
+                  <tr><td>累计会话卷宗</td><td><b id="hdSessions">—</b></td></tr>
+                  <tr><td>可用模型路由</td><td><b id="hdModels">—</b></td></tr>
+                  <tr><td>Agent 模式</td><td><b id="hdPresets">—</b></td></tr>
+                  <tr><td>权限预设</td><td><b id="hdPermissions">—</b></td></tr>
+                  <tr><td>宿主网关</td><td><b id="hdGateway">检测中</b></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <!-- 办事通道 -->
+        <div class="gov-panel home-channels">
+          <div class="gov-panel-title">常用办事通道</div>
+          <div class="channel-grid">
+            <div class="ch" data-goto="hall">发起申报</div>
+            <div class="ch" data-goto="volume">电子卷宗</div>
+            <div class="ch" data-goto="trail">督办流水</div>
+            <div class="ch" data-goto="config">参数配置</div>
+            <div class="ch" data-goto="policy">政策法规</div>
+            <div class="ch" data-act="export-log">日志导出</div>
+            <div class="ch" data-act="new-session">新建工单</div>
+            <div class="ch" data-act="main-gui">返回主控台</div>
+          </div>
+        </div>
+        <!-- 政策速览 -->
+        <div class="home-policy-row">
+          <div class="hp" data-goto="policy">平台运行管理规范</div>
+          <div class="hp" data-goto="config">系统参数配置</div>
+          <div class="hp" data-act="feedback">故障申诉直通车</div>
+        </div>
+      </section>
+
+      <!-- 业务大厅（默认办理区） -->
+      <section class="tab-page" id="page-hall">
+        <div class="workorder-bar">
+          <span>工单编号：<span id="woNo">未创建</span>　会话：<span id="woSessionId" class="num">—</span></span>
+          <span><span class="wo-status" id="woStatus">【待受理】</span></span>
+        </div>
+
+        <div class="receipt-window" id="receiptWindow">
+          <div class="welcome" id="welcomeBox">
+            <div class="big">综合业务直办大厅</div>
+            欢迎使用 Deepseek Harness 综合智能办事平台。<br>
+            请在下方【申报需求】栏填写您需要办理的事项，选择模型、模式与权限后点击【提交办理】。<br>
+            系统将实时展示办理回执、办理思路、工具调用与轨迹日志，办结时自动加盖【准予办结】印章。
+          </div>
+          <div id="receiptContent"></div>
+          <div class="stamp-box" id="stampBox"><span class="stamp" id="stampEl">准予办结</span></div>
+        </div>
+
+        <div class="statsbar" id="statsBar">
+          <span class="seg">轮 <b id="stTurns">0</b> · 步 <b id="stSteps">0</b></span>
+          <span class="seg">模型 <b id="stLlm">0s</b> · 工具调用 <b id="stTool">0s</b></span>
+          <span class="seg">首字平均 <b id="stTtft">—</b> · <b id="stTps">—</b> 字/秒</span>
+          <span class="seg">缓存命中 <b id="stCache">—</b></span>
+          <span class="seg">输入 <b id="stIn">0</b> · 输出 <b id="stOut">0</b></span>
+          <span class="seg">吞吐 <b id="stTps2">—</b></span>
+        </div>
+
+        <div class="input-area">
+          <textarea class="prompt-textarea" id="promptInput" placeholder="请在此输入您的申报办理需求…（回车提交 / Shift+回车换行）"></textarea>
+          <div class="param-row">
+            <label>工作目录：<select class="gov-select" id="selCwd" title="选择会话工作目录"></select></label>
+            <label>权限：<select class="gov-select" id="selPermission"></select></label>
+            <label>模式：<select class="gov-select" id="selPreset"></select></label>
+            <label>模型：<select class="gov-select" id="selModel"></select></label>
+            <label>推理强度：<select class="gov-select" id="selEffort"></select></label>
+            <div class="param-actions">
+              <button class="gov-btn" id="btnSubmit">提交办理</button>
+              <button class="gov-btn gray" id="btnReset">格式化重置</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 电子卷宗 -->
+      <section class="tab-page" id="page-volume">
+        <div class="gov-panel">
+          <div class="gov-panel-title">电子卷宗 · 会话档案索引</div>
+          <div class="gov-panel-body">
+            <div class="toolbar-row">
+              <button class="gov-btn small" id="btnVolumeRefresh">刷新索引</button>
+              <button class="gov-btn small red" id="btnVolumeNew">新建空白卷宗</button>
+              <button class="gov-btn small gray" id="btnVolumeExport">导出当前卷宗日志</button>
+              <span class="spacer"></span>
+              <input type="text" id="volumeSearch" placeholder="按标题/摘要检索…" style="border:1px solid #999;height:28px;padding:0 8px;width:220px">
+              <button class="gov-btn small" id="btnVolumeSearch">检索</button>
+            </div>
+            <div id="volumeTableBox"><table class="gov-table" id="volumeTable">
+              <thead><tr><th style="width:64px">序号</th><th style="width:200px">会话编号</th><th>标题 / 摘要</th><th style="width:150px">更新时间</th><th style="width:80px">状态</th><th style="width:190px">操作</th></tr></thead>
+              <tbody><tr><td colspan="6" style="text-align:center;color:#999">正在加载…</td></tr></tbody>
+            </table></div>
+            <div class="pager-row" id="volumePager"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 督办流水 -->
+      <section class="tab-page" id="page-trail">
+        <div class="gov-panel">
+          <div class="gov-panel-title">督办流水 · 轨迹事件日志<span class="sub" id="trailSessionLabel">未绑定会话</span></div>
+          <div class="gov-panel-body">
+            <div class="toolbar-row">
+              <button class="gov-btn small" id="btnTrailClear">清空流水</button>
+              <label style="font-size:13px"><input type="checkbox" id="chkTrailChunk" checked> 显示字级输出</label>
+              <label style="font-size:13px"><input type="checkbox" id="chkTrailAuto" checked> 自动滚动</label>
+            </div>
+            <div style="max-height:600px;overflow-y:auto" id="trailScroll">
+              <table class="gov-table trail-table" id="trailTable">
+                <thead><tr><th style="width:70px">序号</th><th style="width:150px">时间</th><th style="width:180px">事件类型</th><th>事件摘要</th></tr></thead>
+                <tbody><tr><td colspan="4" style="text-align:center;color:#999">暂无轨迹事件（进入业务大厅发起办理后实时记录）</td></tr></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 参数配置 -->
+      <section class="tab-page" id="page-config">
+        <div id="configPanel"></div>
+      </section>
+
+      <!-- 通知公告详情（独立内容页，不使用弹窗） -->
+      <section class="tab-page" id="page-notice">
+        <div class="notice-page">
+          <div class="notice-breadcrumb"><a id="noticeBackHome">平台首页</a> &gt; 通知公告 &gt; 正文</div>
+          <article class="notice-article">
+            <h1 id="noticePageTitle">通知公告</h1>
+            <div class="notice-meta" id="noticePageMeta"></div>
+            <div class="notice-rule"></div>
+            <div class="notice-content" id="noticePageContent"></div>
+            <div class="notice-signature">Deepseek Harness 平台运行管理中心<br><span id="noticePageDate"></span></div>
+          </article>
+          <div class="notice-actions"><button class="gov-btn gray" id="noticeBackButton">返回平台首页</button></div>
+        </div>
+      </section>
+
+      <!-- 政策法规 -->
+      <section class="tab-page" id="page-policy">
+        <div class="gov-panel">
+          <div class="gov-panel-title red">政策法规 · 平台运行管理规范</div>
+          <div class="gov-panel-body" id="policyBody"></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ========= 右：支撑侧栏 ========= -->
+    <div class="col-aside">
+      <div class="gov-panel">
+        <div class="gov-panel-title">常用办事通道</div>
+        <ul class="aside-links gov-panel-body" style="padding:6px 10px">
+          <li><a data-act="volume">电子卷宗快速索引<span class="desc">— 查阅全部会话档案</span></a></li>
+          <li><a data-act="new-session">算力凭证申领<span class="desc">— 新建空白工单会话</span></a></li>
+          <li><a data-act="export-log">运行日志导出<span class="desc">— 下载当前会话卷宗</span></a></li>
+          <li><a data-act="feedback">故障申诉直通车<span class="desc">— 反馈运行问题</span></a></li>
+          <li><a data-act="config">参数配置中心<span class="desc">— 全维度热修改</span></a></li>
+          <li><a data-act="main-gui">返回主控台<span class="desc">— 打开主界面</span></a></li>
+        </ul>
+      </div>
+      <div class="gov-panel">
+        <div class="gov-panel-title red">便民服务提示</div>
+        <div class="gov-panel-body aside-hours">
+          <p><span class="lbl">工作时间：</span><b>周一至周五 08:30-11:30<br>14:00-17:30</b></p>
+          <p><span class="lbl">机房运维：</span>7×24 小时值班</p>
+          <p><span class="lbl">热线电话：</span>400-000-0000</p>
+          <p><span class="lbl">技术保障：</span><span id="asideTech">DeepSeek Harness 运行班组</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 页脚 ============ -->
+  <div class="footer">
+    <div class="page-wrap">
+      <div class="org" id="footerOrg">主办单位：DeepSeek Harness 平台运行管理中心</div>
+      <div id="footerTech">技术支持：DeepSeek Harness 工程保障部</div>
+      <div class="beian" id="footerBeian">赣ICP备00000000号-1　赣公网安备00000000000000号　政府网站标识码：3600000000</div>
+      <div class="beian" style="margin-top:2px">建议使用 IE8 及以上版本浏览器 / 360安全浏览器极速模式访问本站，以获得最佳显示效果</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 漂浮弹窗（JS 动态创建） ============ -->
+<div id="floatLayer"></div>
+<!-- 通用弹层容器 -->
+<div id="dialogLayer"></div>
+
+<script src="/js/util.js"></script>
+<script src="/js/api.js"></script>
+<script src="/js/store.js"></script>
+<script src="/js/marquee.js"></script>
+<script src="/js/float.js"></script>
+<script src="/js/panels.js"></script>
+<script src="/js/app.js"></script>
+</body>
+</html>
