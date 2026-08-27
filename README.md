@@ -3,7 +3,7 @@
 一个以**中国地方政务网站视觉规范**为设计基准的独立 WebUI 插件：在独立端口（默认 **3081**）提供政务风办事大厅界面，通过宿主进程内的 **apiProxy 网关** 1:1 对接 DeepSeek Harness 的会话、模型、模式、权限、统计等**全部真实 Agent 能力**（零业务硬编码）。
 
 界面采用可复用的政务服务门户设计语言，完整设计规范见 [`docs/design-system.md`](docs/design-system.md)；宿主集成面调研见 [`docs/harness-integration.md`](docs/harness-integration.md)。
-
+[![dsh.so install](https://www.dsh.so/badge/install/dsh-gov-portal.svg)](https://www.dsh.so/artifact/dsh-gov-portal) [![dsh.so security](https://www.dsh.so/badge/dsh-gov-portal.svg)](https://www.dsh.so/artifact/dsh-gov-portal)
 ---
 
 ## 功能总览
